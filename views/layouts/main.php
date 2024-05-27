@@ -9,7 +9,9 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use app\assets\BootstrapIconsAsset;
 
+BootstrapIconsAsset::register($this);
 AppAsset::register($this);
 
 $this->registerCsrfMetaTags();
@@ -34,23 +36,23 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
-        'options' => ['class' => 'navbar-expand-md navbar-dark bg-success fixed-top']
+        'options' => ['class' => 'navbar-expand-md navbar-light bg-info fixed-top']
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav ms-auto'],
         'items' => [
-            ['label' => 'Меню', 'visible' => Yii::$app->user->can('admin'), 'items' => [
-                    ['label' => 'Сотрудники', 'url' => ['/admin/profile/index']],
-                    ['label' => 'Должности', 'url' => ['/admin/position/index']],
-                ]
-            ],
+//            ['label' => 'Меню', 'visible' => Yii::$app->user->can('admin'), 'items' => [
+//                    ['label' => 'Сотрудники', 'url' => ['/admin/profile/index']],
+//                    ['label' => 'Должности', 'url' => ['/admin/position/index']],
+//                ]
+//            ],
             Yii::$app->user->isGuest
                 ? ['label' => 'Авторизация', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
                         'Выйти (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'nav-link btn btn-link logout']
+                        ['class' => 'nav-link btn btn-link logout text-dark']
                     )
                     . Html::endForm()
                     . '</li>'
@@ -73,7 +75,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <footer id="footer" class="mt-auto py-3 bg-light">
     <div class="container">
         <div class="row text-muted">
-            <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?></div>
+            <div class="col-md-6 text-center text-md-start">Разработка ИС "Журнал учёта перевозок" &copy; Казахмыс. Перевозки <?= date('Y') ?></div>
             <div class="col-md-6 text-center text-md-end"><?= Yii::powered() ?></div>
         </div>
     </div>
